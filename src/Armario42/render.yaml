@@ -3,9 +3,11 @@ services:
     name: armario42
     env: docker
     plan: free
-    dockerfilePath: Armario42/Dockerfile
+    dockerfilePath: src/Armario42/Dockerfile
     buildCommand: ""
     startCommand: ""
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Development
+      - key: ConnectionStrings__DefaultConnection
+        value: Host=dpg-d0pp1mruibrs73814cj0-a.oregon-postgres.render.com;Port=5432;Database=armario42;Username=armario_user;Password=vZmD0ospn1V1vyMke6PvIOGnZXI0UHaO;SSL Mode=Require

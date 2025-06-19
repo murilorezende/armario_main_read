@@ -1,5 +1,5 @@
 # Etapa 1: build
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copia os arquivos do projeto e restaura dependências
@@ -9,7 +9,17 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o /out
 
 # Etapa 2: runtime
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /out .
-ENTRYPOINT [ "dotnet", "Armario42.dll" ]
+
+# Configuração para Azure App Service
+ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV DOTNET_CONSOLE_LOGGER_ENABLED=true
+ENV DOTNET_LOGGING__CONSOLE__DISABLECOLORS=true
+
+# Criar diretório para logs
+RUN mkdir -p /app/logs && chmod 777 /app/logs
+
+ENTRYPOINT ["dotnet", "Armario42.dll"]
