@@ -1,0 +1,45 @@
+@model IEnumerable<Armario42.Models.Anuncio>
+
+@{
+    ViewData["Title"] = "Anúncios";
+}
+
+<h1>Anúncios</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Novo Anúncio</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Preço</th>
+            <th>Status</th>
+            <th>Tags</th>
+            <th>Foto</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var anuncio in Model)
+        {
+            <tr>
+                <td>@anuncio.Titulo</td>
+                <td>R$ @anuncio.Preco.ToString("F2")</td>
+                <td>@anuncio.StatusAnuncio</td>
+                <td>@anuncio.Tags</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(anuncio.Foto))
+                    {
+                        <img src="@anuncio.Foto" width="60" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@anuncio.AnuncioId">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@anuncio.AnuncioId">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

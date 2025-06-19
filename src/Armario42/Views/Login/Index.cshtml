@@ -1,0 +1,135 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    .login-container {
+        display: flex;
+        min-height: 80vh;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .login-left {
+        background-color: #394452;
+        color: white;
+        padding: 50px;
+        width: 40%;
+    }
+
+    .login-left h1 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .login-left p {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    .login-right {
+        background-color: #f4f9ff;
+        flex: 1;
+        padding: 60px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .login-right h2 {
+        font-weight: 600;
+        font-size: 1.8rem;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .login-right p.sub {
+        color: #7b8a97;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        border-radius: 30px;
+        padding: 10px 20px;
+        background-color: #f0f2f5;
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    .btn-login {
+        background-color: #6c63ff;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 30px;
+        border: none;
+        font-size: 1rem;
+    }
+
+    .btn-forgot {
+        display: block;
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+    .register-link {
+        margin-top: 25px;
+        font-size: 0.95rem;
+        color: #555;
+    }
+
+    .register-link a {
+        color: #28a745;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+    .alert {
+        max-width: 400px;
+        margin: 0 auto 20px auto;
+        font-size: 0.95rem;
+    }
+</style>
+
+<div class="login-container">
+    <!-- Lado esquerdo -->
+    <div class="login-left">
+        <h1>Armário 42</h1>
+        <p>Seja bem-vindo de volta! Acesse sua conta para visualizar anúncios, lojas e interagir com os recursos da plataforma.</p>
+    </div>
+
+    <!-- Lado direito (formulário) -->
+    <div class="login-right">
+        <h2>Login</h2>
+        <p class="sub">Digite suas credenciais para acessar</p>
+
+        @if (TempData["MensagemSucesso"] != null)
+        {
+            <div class="alert alert-success">@TempData["MensagemSucesso"]</div>
+        }
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger">@TempData["MensagemErro"]</div>
+        }
+
+        <form asp-action="Index" method="post">
+            <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail" required />
+            <input type="password" name="senha" class="form-control" placeholder="Digite sua senha" required />
+
+            <button type="submit" class="btn btn-login mt-3">Entrar</button>
+
+            <a href="@Url.Action("EsqueciSenha", "Login")" class="btn-forgot">Esqueci minha senha</a>
+        </form>
+
+        <div class="register-link">
+            Primeira vez aqui? <a asp-controller="Usuario" asp-action="Create">Crie sua conta</a>
+        </div>
+    </div>
+</div>

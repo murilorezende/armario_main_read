@@ -1,0 +1,59 @@
+@model Armario42.Models.Loja
+
+@{
+    ViewData["Title"] = Model.Nome;
+}
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>@Model.Nome</h1>
+            <p class="text-muted">Contato: @Model.Contato</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h2>Anúncios da Loja</h2>
+            @if (Model.Anuncios != null && Model.Anuncios.Any())
+            {
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    @foreach (var anuncio in Model.Anuncios)
+                    {
+                        <div class="col">
+                            <div class="card h-100">
+                                @if (!string.IsNullOrEmpty(anuncio.Foto))
+                                {
+                                    <img src="@anuncio.Foto" class="card-img-top" alt="@anuncio.Titulo" style="height: 200px; object-fit: cover;">
+                                }
+                                <div class="card-body">
+                                    <h5 class="card-title">@anuncio.Titulo</h5>
+                                    <p class="card-text">@anuncio.Descricao</p>
+                                    <p class="card-text">
+                                        <strong>Preço:</strong> R$ @anuncio.Preco.ToString("F2")
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted">Status: @anuncio.StatusAnuncio</small>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a asp-controller="Anuncio" asp-action="Details" asp-route-id="@anuncio.AnuncioId" class="btn btn-primary">Ver Detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    Esta loja ainda não possui anúncios.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Voltar para Lista de Lojas</a>
+</div> 

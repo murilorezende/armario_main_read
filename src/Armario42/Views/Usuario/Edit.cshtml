@@ -1,0 +1,156 @@
+@model Armario42.Models.Usuario
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+    Layout = null; // Remove isso se estiver usando layout geral do site
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Editar Usuário</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #d6d5d6;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .form-aprendiz {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f1f1f1;
+            font-size: 14px;
+        }
+
+        .botoes {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        .btn.cancelar {
+            background-color: #fff;
+            border: 1px solid #333;
+            color: #333;
+        }
+
+        .btn.cancelar:hover {
+            background-color: #f0f0f0;
+        }
+
+        .btn.continuar {
+            background-color: #1c2d49;
+            color: white;
+        }
+
+        .btn.continuar:hover {
+            background-color: #0e1c31;
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Usuário</h1>
+
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="form-aprendiz">
+            <input type="hidden" asp-for="UsuarioId" />
+
+            <div class="campo">
+                <label asp-for="Nome"></label>
+                <input asp-for="Nome" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="campo">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="campo">
+                <label asp-for="Senha"></label>
+                <input asp-for="Senha" type="password" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="botoes">
+                <a asp-action="Index" class="btn cancelar">Cancelar</a>
+                <button type="submit" class="btn continuar">Atualizar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<div class="campo">
+    <label for="foto">Foto de Perfil</label>
+    <input type="file" name="foto" class="form-control" />
+</div>
+
+@if (!string.IsNullOrEmpty(Model.FotoPerfil))
+{
+    <div class="campo">
+        <label>Foto Atual:</label><br />
+        <img src="@Model.FotoPerfil" width="100" />
+        
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.FotoPerfil))
+{
+    <div class="campo">
+        <label>Foto Atual:</label><br />
+        <img src="@Model.FotoPerfil" width="120" style="border-radius: 8px;" />
+    </div>
+}

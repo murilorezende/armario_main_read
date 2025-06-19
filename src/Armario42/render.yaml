@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: armario42
+    env: docker
+    plan: free
+    dockerfilePath: Armario42/Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Development

@@ -1,0 +1,40 @@
+@model IEnumerable<Armario42.Models.Loja>
+
+@{
+    ViewData["Title"] = "Lojas";
+}
+
+<h1>Lojas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Criar Nova Loja</a>
+</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a asp-action="Details" asp-route-id="@item.LojaId" class="text-decoration-none">
+                            @item.Nome
+                        </a>
+                    </h5>
+                    <p class="card-text">Contato: @item.Contato</p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            Responsável: @(item.Usuario?.Nome ?? "Não definido")
+                        </small>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.LojaId" class="btn btn-outline-primary">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.LojaId" class="btn btn-outline-danger">Excluir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

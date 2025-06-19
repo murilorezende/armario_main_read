@@ -1,0 +1,94 @@
+# Build results
+bin/
+obj/
+out/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.dbmdl
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+*.snupkg
+
+# Dotnet CLI
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Others
+*.cache
+*.pdb
+*.mdb
+*.exe
+*.dll
+*.log
+*.vspscc
+*.vssscc
+*.tmp
+*.bak
+*.swp
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Publish
+publish/
+wwwroot/dist/
+wwwroot/node_modules/
+
+# Entity Framework
+# (Remova a linha abaixo se quiser versionar suas migrations)
+# Migrations/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Local secrets
+secrets.json
+
+# npm
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~ 

@@ -1,0 +1,33 @@
+@model IEnumerable<Armario42.Models.Relatorio>
+
+@{
+    ViewData["Title"] = "Relatórios";
+}
+
+<h1>Relatórios</h1>
+
+<p>
+    <a asp-action="Gerar" class="btn btn-success">Gerar Novo Relatório</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data de Geração</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var relatorio in Model)
+        {
+            <tr>
+                <td>@relatorio.RelatorioId</td>
+                <td>@relatorio.GeradoEm.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <a asp-action="Detalhes" asp-route-id="@relatorio.RelatorioId">Ver Detalhes</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

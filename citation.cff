@@ -1,0 +1,36 @@
+message: Please cite this software using these metadata.
+title: Armário 42
+authors:
+  - family-names: Laguardia
+    given-names: Alexandre
+    affiliation: Aluno PUC Minas
+  - family-names: Amaral
+    given-names: Aliane
+    affiliation: Aluna PUC Minas
+  - family-names: Veloso
+    given-names: Deuslano
+    affiliation: Aluno PUC Minas
+  - family-names: Santos
+    given-names: Lucas
+    affiliation: Aluno PUC Minas
+  - family-names: Rezende
+    given-names: Murilo
+    affiliation: Aluno PUC Minas
+  - family-names: Tizzo
+    given-names: Neil Paiva
+    affiliation: Professor PUC Minas
+keywords:
+  - cosplays
+  - vitrine
+  - lojas
+  - anuncios
+  - produtos 
+  - geek
+  - nerd
+  - revenda
+  - artesanato
+  - eventos
+  - fantasias
+repository-code: http://armario42-app.azurewebsites.net/
+version: 1.0.0
+date-released: 2025-06-08

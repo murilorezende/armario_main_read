@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<h1>Usuários</h1>
+
+<p>
+    <a asp-action="Create">Novo Usuário</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Email</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UsuarioId">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UsuarioId">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

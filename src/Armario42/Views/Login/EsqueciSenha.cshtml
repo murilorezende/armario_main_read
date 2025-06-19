@@ -1,0 +1,103 @@
+@{
+    ViewData["Title"] = "Recuperar Senha";
+}
+
+<style>
+    .recover-container {
+        display: flex;
+        min-height: 80vh;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .recover-left {
+        background-color: #394452;
+        color: white;
+        padding: 50px;
+        width: 40%;
+    }
+
+    .recover-left h1 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .recover-left p {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    .recover-right {
+        background-color: #f4f9ff;
+        flex: 1;
+        padding: 60px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .recover-right h2 {
+        font-weight: 600;
+        font-size: 1.8rem;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .recover-right p.sub {
+        color: #7b8a97;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        border-radius: 30px;
+        padding: 10px 20px;
+        background-color: #f0f2f5;
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    .btn-recover {
+        background-color: #6c63ff;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 30px;
+        border: none;
+        font-size: 1rem;
+    }
+
+    .back-link {
+        margin-top: 20px;
+        font-size: 0.95rem;
+        display: block;
+        color: #555;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="recover-container">
+    <!-- Lado esquerdo -->
+    <div class="recover-left">
+        <h1>Armário 42</h1>
+        <p>Informe o e-mail cadastrado para receber as instruções de recuperação de senha. Fique atento à sua caixa de entrada!</p>
+    </div>
+
+    <!-- Lado direito -->
+    <div class="recover-right">
+        <h2>Esqueci minha senha</h2>
+        <p class="sub">Digite seu e-mail para redefinir sua senha</p>
+
+        <form asp-action="EnviarEmailRecuperacao" method="post">
+            <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail" required />
+
+            <button type="submit" class="btn btn-recover mt-3">Enviar instruções</button>
+        </form>
+
+        <a asp-controller="Login" asp-action="Index" class="back-link">Voltar para o login</a>
+    </div>
+</div>

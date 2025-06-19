@@ -1,0 +1,114 @@
+@model Armario42.Models.Usuario
+
+@{
+    ViewData["Title"] = "Criar Usuário";
+}
+
+<style>
+    .cadastro-container {
+        display: flex;
+        min-height: 80vh;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .cadastro-side {
+        background-color: #394452;
+        color: white;
+        padding: 40px;
+        width: 40%;
+    }
+
+    .cadastro-side h1 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .cadastro-side p {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    .cadastro-form {
+        background-color: #f4f9ff;
+        flex: 1;
+        padding: 60px 40px;
+    }
+
+    .cadastro-form h2 {
+        font-weight: 600;
+        font-size: 1.8rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 30px;
+        padding: 10px 20px;
+        background-color: #f0f2f5;
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    .btn-submit {
+        background-color: #b8c0d4;
+        color: white;
+        padding: 10px 30px;
+        border-radius: 30px;
+        border: none;
+    }
+
+    .back-link {
+        display: block;
+        margin-top: 20px;
+        color: #555;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="cadastro-container">
+    <div class="cadastro-side">
+        <h1>Bem-vindo!</h1>
+        <p>Preencha o formulário ao lado para criar sua conta e começar a explorar o Armário 42.</p>
+    </div>
+
+    <div class="cadastro-form">
+        <h2>Primeira vez aqui?</h2>
+        <p class="text-muted mb-4">Já possui conta? <a asp-controller="Login" asp-action="Index">Faça seu login.</a></p>
+
+        @if (TempData["MensagemErro"] != null)
+        {
+            <div class="alert alert-danger">@TempData["MensagemErro"]</div>
+        }
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input asp-for="Nome" class="form-control" placeholder="Digite aqui seu nome" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Email" class="form-control" placeholder="Digite aqui seu e-mail" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Senha" class="form-control" type="password" placeholder="Digite aqui sua senha" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="Digite novamente sua senha" />
+            </div>
+            <button type="submit" class="btn btn-submit mt-3">Criar Conta</button>
+        </form>
+
+        <a asp-controller="Home" asp-action="Index" class="back-link">Voltar</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

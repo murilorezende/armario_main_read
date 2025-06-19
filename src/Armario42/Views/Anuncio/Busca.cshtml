@@ -1,0 +1,80 @@
+@model IEnumerable<Armario42.Models.Anuncio>
+@{
+    ViewData["Title"] = "Busca de Anúncios";
+}
+
+<!-- Cabeçalho -->
+<header class="bg-dark py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <img src="/logo.png" alt="Logomarca" style="height:48px; width:auto; margin-right:16px;">
+            <span class="fs-4 text-white">Armario42</span>
+        </div>
+        <div>
+            <a class="btn btn-outline-light me-2" asp-controller="Login" asp-action="Index">Fazer Login</a>
+            <a class="btn btn-primary" asp-controller="Usuario" asp-action="Create">Cadastre-se</a>
+        </div>
+    </div>
+</header>
+
+<!-- Barra de busca -->
+<div class="bg-light py-4 mb-4">
+    <div class="container">
+        <form class="d-flex justify-content-center" asp-action="Busca" method="get">
+            <input class="form-control w-50 me-2" type="search" name="q" placeholder="Buscar anúncio..." aria-label="Buscar">
+            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Resultados de busca -->
+<div class="container">
+    <div class="mb-3 text-muted">
+        Resultados de Busca (@Model.Count() resultados encontrados)
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var anuncio in Model)
+        {
+            <div class="col">
+                <div class="card h-100 text-center">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 220px;">
+                        @if (!string.IsNullOrEmpty(anuncio.Foto))
+                        {
+                            <img src="@anuncio.Foto" class="rounded-circle" alt="@anuncio.Titulo" style="width: 160px; height: 160px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="bg-secondary rounded-circle" style="width: 160px; height: 160px;"></div>
+                        }
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@anuncio.Titulo</h5>
+                        <p class="card-text text-muted" style="min-height: 48px;">@anuncio.Descricao</p>
+                        <div class="mb-2">
+                            @if (!string.IsNullOrEmpty(anuncio.Tags))
+                            {
+                                var tags = anuncio.Tags.Split(',');
+                                foreach (var tag in tags)
+                                {
+                                    <span class="badge bg-light text-secondary border me-1">@tag.Trim()</span>
+                                }
+                            }
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold fs-5">R$ @anuncio.Preco.ToString("F2")</span>
+                            <span class="text-success fw-semibold">Disponível</span>
+                        </div>
+                        <a asp-controller="Loja" asp-action="Details" asp-route-id="@anuncio.LojaId" class="btn btn-primary w-100">Consultar Loja</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Rodapé -->
+<footer class="bg-secondary text-white text-center py-3 mt-5">
+    <div class="container">
+        &copy; 2025 Armario42. Todos os direitos reservados.
+    </div>
+</footer> 
